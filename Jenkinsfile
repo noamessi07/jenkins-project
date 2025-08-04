@@ -5,7 +5,7 @@ pipeline {
             }
       }
     triggers {
-        pollSCM '*/3 * * * *'
+        pollSCM '* * * * *'
     }
     stages {
         stage('Build') {
@@ -13,6 +13,8 @@ pipeline {
                 echo "Building.."
                 sh '''
                 cd myapp
+                python3 -m venv myapp
+                source /myapp/bin/activate
                 pip install -r requirements.txt
                 '''
             }
